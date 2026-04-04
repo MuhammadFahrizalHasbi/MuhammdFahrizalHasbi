@@ -1,18 +1,186 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <title>Beranda - Tugas Web Saya</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - My Portfolio</title>
+    <style>
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at top right, #f5f3ff, transparent),
+                        radial-gradient(circle at bottom left, #eff6ff, transparent);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #1e293b, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        /* Buttons Container */
+        .cta-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid #e2e8f0;
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background-color: #f8fafc;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul { display: none; } /* Sederhanakan untuk mobile */
+            .hero h1 { font-size: 2.8rem; }
+        }
+    </style>
 </head>
 <body>
+
     <nav>
-        <b>MENU:</b>
-        <a href="index.html">Home</a> | 
-        <a href="biodata.html">Biodata</a> | 
-        <a href="gallery.html">Galeri</a> | 
-        <a href="video.html">Video</a>
+        <div class="logo">PORTFOLIO.</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="biodata.html">Biodata</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="video.html">Video</a></li>
+        </ul>
     </nav>
-    <hr>
-    <h1>Selamat Datang di Website Muhammad Fahrizal Hasbi</h1>
-    <p>Silakan klik menu di atas untuk menjelajahi halaman lainnya.</p>
+
+    <section class="hero">
+        <h1>Selamat Datang di Dunia Digital Saya.</h1>
+        <p>Saya seorang mahasiswa yang sedang mengeksplorasi pengembangan web. Website ini dibuat untuk memenuhi tugas mata kuliah menggunakan GitHub Pages.</p>
+        
+        <div class="cta-group">
+            <a href="biodata.html" class="btn btn-primary">Lihat Biodata</a>
+            <a href="gallery.html" class="btn btn-outline">Lihat Galeri</a>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2024 Project Github - All Rights Reserved.
+    </footer>
+
 </body>
 </html>
