@@ -2,19 +2,168 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Biodata - My Website</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Saya</title>
+    <style>
+        /* Menggunakan font modern dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            /* Background dengan gradien linear yang soft */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            max-width: 500px;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .header-bg {
+            background: #2c3e50;
+            height: 120px;
+            width: 100%;
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #fff;
+            margin-top: -65px;
+            background-color: #eee;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .info-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .info-table td:first-child {
+            font-weight: 600;
+            color: #2c3e50;
+            width: 35%;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            background: #3498db;
+            color: white;
+            font-weight: 600;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                border-radius: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav>
 
-    <div class="container">
-        <h1>Profil Saya</h1>
-        <table border="0" cellpadding="10">
-            <tr><td><strong>Nama</strong></td><td>: Muhammad Fahrizal Hasbi</td></tr>
-            <tr><td><strong>NIM</strong></td><td>: 2310715210013</td></tr>
-            <tr><td><strong>Jurusan</strong></td><td>: Sosial Ekonomi Perikanan</td></tr>
-        </table>
+    <div class="card">
+        <div class="header-bg"></div>
+        
+        <img src="https://via.placeholder.com/150" alt="Foto Profil" class="profile-img">
+
+        <div class="content">
+            <h1>Nama Lengkap Kamu</h1>
+            <span class="subtitle">Mahasiswa Teknik Informatika</span>
+
+            <table class="info-table">
+                <tr>
+                    <td>NIM</td>
+                    <td>: 123456789</td>
+                </tr>
+                <tr>
+                    <td>Tempat Lahir</td>
+                    <td>: Jakarta, Indonesia</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>: nama@email.com</td>
+                </tr>
+                <tr>
+                    <td>Hobi</td>
+                    <td>: Coding, Desain, Musik</td>
+                </tr>
+                <tr>
+                    <td>Keahlian</td>
+                    <td>: HTML, CSS, JavaScript</td>
+                </tr>
+            </table>
+
+            <div class="social-links">
+                <a href="index.html" class="btn">Kembali ke Home</a>
+            </div>
+        </div>
     </div>
+
 </body>
 </html>
