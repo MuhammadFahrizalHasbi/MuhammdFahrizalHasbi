@@ -3,36 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website | Beranda</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Website Portofolio Tugas</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES (Tema Warna) --- */
+        :root {
+            --primary: #2563eb;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --accent: #3b82f6;
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- RESET & BASE STYLE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: var(--white);
+            padding: 1rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            display: none; /* Sembunyikan semua section dulu */
+            animation: fadeIn 0.5s ease;
+        }
+
+        section:target {
+            display: block; /* Tampilkan section yang di-klik (via ID) */
+        }
+
+        /* Default tampilkan Beranda jika baru buka */
+        #home { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- COMPONENTS --- */
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        h1, h2 {
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        /* Tabel Biodata */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        table td:first-child {
+            font-weight: 600;
+            width: 30%;
+            color: var(--primary);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            background: #ddd;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Video Responsive */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">MyPorto.</div>
+        <div class="logo">WebTugas.</div>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="biodata.html">Biodata</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="video.html">Video</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#biodata">Biodata</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#video">Video</a></li>
         </ul>
     </nav>
 
     <div class="container">
-        <header>
-            <h1>Selamat Datang!</h1>
-            <p>Ini adalah tugas website pertama saya menggunakan GitHub.</p>
-        </header>
-
-        <section class="card">
-            <h2>Tentang Website Ini</h2>
-            <p>Website ini dibuat untuk memenuhi tugas mata kuliah [sistem manajemen informasi perikanan]. Di sini Anda bisa melihat data diri saya, galeri foto, dan konten video yang menarik.</p>
+        
+        <section id="home">
+            <div class="card">
+                <h1>Selamat Datang!</h1>
+                <p>Halo Dosen Pengampu, ini adalah tugas pembuatan website statis yang di-hosting melalui GitHub Pages. Website ini mencakup navigasi antar halaman (index, biodata, galeri, dan video) yang dikemas secara modern.</p>
+                <br>
+                <p>Silakan klik menu navigasi di atas untuk menjelajahi konten.</p>
+            </div>
         </section>
+
+        <section id="biodata">
+            <div class="card">
+                <h2>Biodata Diri</h2>
+                <table>
+                    <tr><td>Nama Lengkap</td><td>[Nama Anda Di Sini]</td></tr>
+                    <tr><td>NIM</td><td>[NIM Anda]</td></tr>
+                    <tr><td>Jurusan</td><td>Teknik Informatika / [Jurusan Anda]</td></tr>
+                    <tr><td>Angkatan</td><td>202X</td></tr>
+                    <tr><td>Keahlian</td><td>HTML, CSS, UI Design</td></tr>
+                    <tr><td>Email</td><td>email@mahasiswa.ac.id</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <div class="card">
+                <h2>Gallery Foto</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">Foto 1 (Link gambar belum ada)</div>
+                    <div class="gallery-item">Foto 2 (Link gambar belum ada)</div>
+                    <div class="gallery-item">Foto 3 (Link gambar belum ada)</div>
+                    <div class="gallery-item">Foto 4 (Link gambar belum ada)</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="video">
+            <div class="card">
+                <h2>Konten Video</h2>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <p style="margin-top: 15px; font-style: italic;">Catatan: Video ini disematkan langsung dari YouTube menggunakan tag iframe.</p>
+            </div>
+        </section>
+
     </div>
 
     <footer>
-        <p>&copy; 2024 Muhammad Fahrizal Hasbi. Dibuat dengan ❤️ untuk Tugas Kuliah.</p>
+        <p>&copy; 2024 [Nama Anda]. Built with GitHub & Passion.</p>
     </footer>
+
+    <script>
+        if(!window.location.hash) {
+            window.location.hash = 'home';
+        }
+    </script>
 
 </body>
 </html>
