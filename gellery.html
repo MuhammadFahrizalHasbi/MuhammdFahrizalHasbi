@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - My Portfolio</title>
+    <style>
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #0f172a; /* Dark theme agar foto lebih menonjol */
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo { font-weight: 700; font-size: 1.4rem; color: #38bdf8; }
+        
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 25px; }
+        nav ul li a { 
+            color: #94a3b8; 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            transition: 0.3s;
+        }
+        nav ul li a:hover { color: #38bdf8; }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p { color: #94a3b8; max-width: 600px; margin: 0 auto; }
+
+        /* Gallery Grid */
+        .gallery-container {
+            padding: 0 5% 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Overlay Effect */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay h3 { font-size: 1.1rem; margin-bottom: 4px; color: #fff; }
+        .overlay p { font-size: 0.8rem; color: #38bdf8; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">PORTFOLIO.</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="biodata.html">Biodata</a></li>
+            <li><a href="gallery.html" style="color: white;">Gallery</a></li>
+            <li><a href="video.html">Video</a></li>
+        </ul>
+    </nav>
+
+    <div class="header">
+        <h1>Creative Gallery</h1>
+        <p>Kumpulan dokumentasi kegiatan dan karya yang telah saya buat selama masa perkuliahan.</p>
+    </div>
+
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600" alt="Coding">
+            <div class="overlay">
+                <h3>Web Development</h3>
+                <p>Project Tugas Web Dasar</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600" alt="Laptop">
+            <div class="overlay">
+                <h3>Workspace</h3>
+                <p>Tempat Saya Berkreasi</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=600" alt="Tech">
+            <div class="overlay">
+                <h3>Algorithm</h3>
+                <p>Belajar Logika Pemrograman</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=600" alt="Futuristic">
+            <div class="overlay">
+                <h3>Cyber Security</h3>
+                <p>Eksplorasi Keamanan Data</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600" alt="Code">
+            <div class="overlay">
+                <h3>Python Script</h3>
+                <p>Automasi Sederhana</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600" alt="HTML">
+            <div class="overlay">
+                <h3>Frontend Design</h3>
+                <p>UI/UX Design Concept</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
