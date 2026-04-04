@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Showcase</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #050505; /* Hitam pekat agar video menonjol */
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Container Video */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(99, 102, 241, 0.3); /* Efek cahaya biru lembut */
+            background: #111;
+            transition: transform 0.4s ease;
+        }
+
+        .video-wrapper:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 70px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Menjaga Rasio Video 16:9 */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Informasi Video */
+        .video-info {
+            margin-top: 30px;
+            text-align: center;
+            max-width: 700px;
+        }
+
+        .video-info h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .video-info p {
+            color: #94a3b8;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Tombol Navigasi */
+        .btn-back {
+            margin-top: 40px;
+            padding: 12px 30px;
+            background: transparent;
+            color: white;
+            border: 1px solid #334155;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            background: #1e293b;
+            border-color: #6366f1;
+        }
+
+        /* Dekorasi Latar Belakang */
+        .blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(99, 102, 241, 0.15);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .blob-1 { top: 10%; left: 10%; }
+        .blob-2 { bottom: 10%; right: 10%; }
+    </style>
+</head>
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="video-info">
+        <h1>Video Dokumentasi</h1>
+        <p>Tonton cuplikan video menarik yang saya pilih untuk melengkapi portofolio digital ini.</p>
+    </div>
+
+    <div class="video-wrapper">
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&showinfo=0" 
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <a href="index.html" class="btn-back">Kembali ke Beranda</a>
+
+</body>
+</html>
