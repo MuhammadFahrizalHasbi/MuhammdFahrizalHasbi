@@ -3,158 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biodata Saya</title>
+    <title>Biodata Profesional</title>
     <style>
-        /* Menggunakan font modern dari Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --primary: #4f46e5;
+            --secondary: #6366f1;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-body: #f8fafc;
+        }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            /* Background dengan gradien linear yang soft */
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            background-color: var(--bg-body);
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
             padding: 20px;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            max-width: 500px;
+        /* Card Container */
+        .profile-card {
+            background: white;
             width: 100%;
-            border-radius: 20px;
+            max-width: 450px;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            text-align: center;
-            transition: transform 0.3s ease;
+            border: 1px solid #e2e8f0;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .header-bg {
-            background: #2c3e50;
-            height: 120px;
+        /* Top Accent */
+        .card-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            height: 100px;
             width: 100%;
         }
 
-        .profile-img {
-            width: 250px;
-            height: 300px;
+        /* Profile Content */
+        .card-body {
+            padding: 0 30px 30px 30px;
+            text-align: center;
+        }
+
+        .img-container {
+            width: 120px;
+            height: 120px;
+            background: #fff;
+            border-radius: 50%;
+            margin: -60px auto 15px;
+            padding: 5px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid #fff;
-            margin-top: 65px;
-            background-color: #eee;
+            background: #cbd5e1;
         }
 
-        .content {
-            padding: 30px;
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-
-        .subtitle {
-            color: #3498db;
+        h2 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 25px;
-            display: block;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
         }
 
-        .info-table {
-            width: 100%;
-            border-collapse: collapse;
+        .tag {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+            background: #eef2ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        /* Data Section */
+        .info-grid {
+            margin-top: 25px;
             text-align: left;
-            margin-bottom: 25px;
         }
 
-        .info-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #f0f0f0;
-            color: #555;
-            font-size: 0.95rem;
-        }
-
-        .info-table td:first-child {
-            font-weight: 600;
-            color: #2c3e50;
-            width: 35%;
-        }
-
-        .social-links {
+        .info-item {
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed #e2e8f0;
         }
 
-        .btn {
-            padding: 10px 25px;
-            border-radius: 25px;
-            text-decoration: none;
-            background: #3498db;
-            color: white;
-            font-weight: 600;
-            transition: 0.3s;
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            color: var(--text-light);
             font-size: 0.9rem;
         }
 
-        .btn:hover {
-            background: #2980b9;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        .value {
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
         }
 
-        @media (max-width: 480px) {
-            .card {
-                border-radius: 15px;
+        /* Navigation Button */
+        .btn-nav {
+            display: block;
+            margin-top: 25px;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .profile-card {
+                border-radius: 16px;
+            }
+            .card-body {
+                padding: 0 20px 20px 20px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="header-bg"></div>
+    <div class="profile-card">
+        <div class="card-header"></div>
         
-        <img src="Fotoku.jpg" alt="Fotoku.jpg" class="Fotoku.jpg" img>
-
-        <div class="content">
-            <h1>Muhammad Fahrizal Hasbi</h1>
-            <span class="subtitle">Mahasiswa Sosial Ekonomi Perikanan</span>
-
-            <table class="info-table">
-                <tr>
-                    <td>NIM</td>
-                    <td>: 2310715210013</td>
-                </tr>
-                <tr>
-                    <td>Jurusan</td>
-                    <td>: Sosial Ekonomi Perikanan</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>: nama@email.com</td>
-                </tr>
-                </tr>
-            </table>
-
-            <div class="social-links">
-                <a href="index.html" class="btn">Kembali ke Home</a>
+        <div class="card-body">
+            <div class="img-container">
+                <img src="https://ui-avatars.com/api/?name=User&background=random&size=128" alt="Foto Profil">
             </div>
+
+            <h2>Nama Lengkap Kamu</h2>
+            <span class="tag">Mahasiswa Aktif</span>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">NIM</span>
+                    <span class="value">202401001</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Jurusan</span>
+                    <span class="value">Sistem Informasi</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Email</span>
+                    <span class="value">mhs@kampus.ac.id</span>
+                </div>
+
+            <a href="index.html" class="btn-nav">Kembali ke Beranda</a>
         </div>
     </div>
 
