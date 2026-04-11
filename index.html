@@ -1,196 +1,77 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - My Portfolio</title>
-    <style>
-        /* Import Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        body {
-            /* Background gradien animasi bergerak */
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Navigation Bar */
-        nav {
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .logo {
-            color: white;
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 30px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 400;
-            transition: 0.3s;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        nav ul li a:hover {
-            opacity: 1;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
-        }
-
-        /* Hero Section */
-        .hero {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 20px;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            animation: fadeInUp 1.5s ease;
-        }
-
-        /* Tombol Animasi */
-        .cta-container {
-            display: flex;
-            gap: 15px;
-            animation: fadeInUp 2s ease;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-            border: 2px solid white;
-        }
-
-        .btn-primary {
-            background: white;
-            color: #e73c7e;
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: white;
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: white;
-        }
-
-        .btn-outline:hover {
-            background: white;
-            color: #23a6d5;
-        }
-
-        /* Animasi Masuk */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Footer mini */
-        footer {
-            padding: 20px;
-            text-align: center;
-            color: white;
-            font-size: 0.8rem;
-            opacity: 0.6;
-        }
-
-        /* Responsive Mobile */
-        @media (max-width: 768px) {
-            nav { padding: 20px; }
-            nav ul { display: none; } /* Sembunyikan menu di mobile untuk simpelnya */
-            .hero h1 { font-size: 2.5rem; }
-        }
-    </style>
+  <title>INPUT DATA KE SPREAD SHEET</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /*  */
+    body {
+      background-color: #0c0a0a;
+    }
+    #form-container {
+      width: 500px;
+      margin: 0 auto;
+      background-color: #f1f1f7;
+      border: 2px solid #da0808;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    #form-container h2 {
+      text-align: center;
+      color: #1E90FF;
+    }
+    #form-container input[type="text"], #form-container input[type="date"], #form-container input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 2px solid #f1d0d0;
+      border-radius: 5px;
+    }
+    #form-container input[type="submit"] {
+      background-color: #1E90FF;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+    }
+    #form-container input[type="submit"]:hover {
+      background-color: #004B8D;
+    }
+    #footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 12px;
+      color: #f7f1f1;
+    }
+  </style>
 </head>
+
 <body>
+  <div id="form-container">
+    <h2>INPUT DATA KE SPREAD SHEET</h2>
+    <!-- akses link script app -->
+    <form action="https://script.google.com/macros/s/AKfycbyZwQjw3juRmGWIbdi88SKLo-gmSYGJDvZiYVCWArqe7PgFdh2UGjzISIWxyh5gjz5Rdg/exec" method="post">
+    <!-- end akses  -->
 
-    <nav>
-        <div class="logo">PORTFOLIO.</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="biodata.html">Biodata</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="video.html">Video</a></li>
-        </ul>
-    </nav>
+        <label for="nama">Nama:</label>
+      <input type="text" id="nama" name="nama" required>
+      <label for="ktp">Nomor KTP:</label>
+      <input type="text" id="ktp" name="ktp" required>
+      <label for="tgl_lahir">Tanggal Lahir:</label>
+      <input type="date" id="tgl_lahir" name="tgl_lahir" required>
+      <label for="alamat">Alamat:</label>
+      <input type="text" id="alamat" name="alamat" required>
+      <label for="no_hp">Nomor HP:</label>
+      <input type="tel" id="no_hp" name="no_hp" pattern="[0-9]{10,12}" required>
+      <input type="submit" value="Simpan Data">
+    </form>
+  </div>
 
-    <main class="hero">
-        <h1>Halo, Saya Muhammad Fahrizal Hasbi</h1>
-        <p>Selamat datang diruang profil saya.</p>
-        
-        <div class="cta-container">
-            <a href="biodata.html" class="btn btn-primary">Lihat biodata</a>
-            <a href="gallery.html" class="btn btn-outline">Buka gallery</a>
-             <a href="video.html" class="btn btn-outline">Buka video</a>
-        </div>
-    </main>
-
-    <footer>
-        &copy; 2026 - Digital Portfolio Muhammad Fahrizal Hasbi
-    </footer>
+  <div id="footer">
+    All Tutorial for you, jagan lupa subcribe karna akan selalu ada update
+  </div>
 
 </body>
 </html>
