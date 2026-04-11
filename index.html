@@ -203,6 +203,30 @@
         </div>
 
     </div>
+<script>
+        const scriptURL = 'GANTI_DENGAN_URL_WEB_APP_ANDA'; // Tempel URL dari Langkah 2 di sini
+        const form = document.getElementById('rgb-form');
+        const btn = document.getElementById('submit-btn');
 
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.innerHTML = 'Mengirim...';
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    alert('Data Berhasil Terkirim!');
+                    btn.disabled = false;
+                    btn.innerHTML = 'Kirim ke Spreadsheet';
+                    form.reset();
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('Gagal mengirim data.');
+                    btn.disabled = false;
+                    btn.innerHTML = 'Kirim ke Spreadsheet';
+                });
+        });
+    </script>
 </body>
 </html>
