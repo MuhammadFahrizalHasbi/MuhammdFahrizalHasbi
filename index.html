@@ -1,125 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <base target="_top">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <style>
-    body { background-color: #f8f9fa; padding: 20px; }
-    .form-container { background: white; padding: 30px; border-radius: 10px; shadow: 0 0 10px rgba(0,0,0,0.1); }
-    h4 { border-bottom: 2px solid #0d6efd; padding-bottom: 10px; margin-top: 20px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pendataan Keuangan</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f7f6; padding: 20px; }
+        .container { max-width: 600px; background: white; padding: 25px; margin: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        .section-title { background: #007bff; color: white; padding: 10px; margin-top: 20px; border-radius: 5px; font-size: 16px; }
+        .form-group { margin-top: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
+        input[type="text"], input[type="date"], input[type="email"], input[type="number"], textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        
+        /* Styling untuk Radio Button agar terlihat seperti Tombol */
+        .btn-group { display: flex; gap: 10px; }
+        .btn-group input[type="radio"] { display: none; }
+        .btn-group label { flex: 1; text-align: center; padding: 10px; background: #e9ecef; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; transition: 0.3s; font-weight: normal; }
+        .btn-group input[type="radio"]:checked + label { background: #28a745; color: white; border-color: #28a745; font-weight: bold; }
+        
+        .submit-btn { margin-top: 25px; width: 100%; padding: 12px; background: #007bff; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; font-weight: bold; }
+        .submit-btn:hover { background: #0056b3; }
+        #loading { display: none; text-align: center; margin-top: 15px; color: #007bff; font-weight: bold; }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="form-container shadow-sm mx-auto" style="max-width: 800px;">
-      <h2 class="text-center mb-4">Formulir Pengumpulan Data</h2>
-      <form id="dataForm" onsubmit="handleFormSubmit(this)">
+
+<div class="container">
+    <h2>Formulir Data Keuangan</h2>
+    <form id="form-keuangan">
         
-        <h4>Data Demografi</h4>
-        <div class="mb-3">
-          <label class="form-label">Nama Lengkap</label>
-          <input type="text" name="nama" class="form-control" required>
+        <div class="section-title">Data Demografi</div>
+        <div class="form-group">
+            <label>Nama Pengguna</label>
+            <input type="text" name="nama" required>
         </div>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label class="form-label">Tanggal Lahir</label>
-            <input type="date" name="tgl_lahir" class="form-control" required>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label class="form-label">Pendidikan Terakhir</label>
-            <select name="pendidikan" class="form-select" required>
-              <option value="">Pilih Pendidikan...</option>
-              <option value="SD">SD</option>
-              <option value="SMP">SMP</option>
-              <option value="SMA/SMK">SMA/SMK</option>
-              <option value="D3">DIPLOMA (D3)</option>
-              <option value="S1">SARJANA (S1)</option>
-              <option value="S2">MAGISTER (S2)</option>
-              <option value="S3">DOKTOR (S3)</option>
-            </select>
-          </div>
+        <div class="form-group">
+            <label>Tanggal Lahir</label>
+            <input type="date" name="tanggal_lahir" required>
         </div>
-        <div class="mb-3">
-          <label class="form-label">Alamat</label>
-          <textarea name="alamat" class="form-control" rows="2"></textarea>
+        <div class="form-group">
+            <label>Alamat</label>
+            <textarea name="alamat" rows="3" required></textarea>
         </div>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label class="form-label">No. Telepon</label>
-            <input type="tel" name="telp" class="form-control">
-          </div>
-          <div class="col-md-6 mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" name="email" class="form-control">
-          </div>
+        <div class="form-group">
+            <label>No Telepon</label>
+            <input type="text" name="telepon" required>
         </div>
-
-        <h4>Data Perbankan</h4>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label class="form-label">Nama Bank</label>
-            <input class="form-control" list="bankOptions" name="bank" placeholder="Cari bank...">
-            <datalist id="bankOptions">
-              <option value="Bank Mandiri">
-              <option value="Bank BNI">
-              <option value="Bank BRI">
-              <option value="Bank BCA">
-              <option value="Bank Syariah Indonesia (BSI)">
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label>Pendidikan Terakhir (Pilih atau Ketik)</label>
+            <input list="list-pendidikan" name="pendidikan" placeholder="Cari atau pilih..." required>
+            <datalist id="list-pendidikan">
+                <option value="SD"></option>
+                <option value="SMP"></option>
+                <option value="SMA/SMK"></option>
+                <option value="D3/Diploma"></option>
+                <option value="S1/Sarjana"></option>
+                <option value="S2/Magister"></option>
             </datalist>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label class="form-label">Nomor Rekening</label>
-            <input type="number" name="rekening" class="form-control">
-          </div>
         </div>
 
-        <h4>Data Transaksi Keuangan</h4>
-        <div class="mb-3">
-          <label class="form-label">Tanggal Transaksi</label>
-          <input type="date" name="tgl_transaksi" class="form-control" required>
+        <div class="section-title">Data Bank</div>
+        <div class="form-group">
+            <label>Nama Bank (Pilih atau Ketik)</label>
+            <input list="list-bank" name="bank" placeholder="Cari bank..." required>
+            <datalist id="list-bank">
+                <option value="Bank Mandiri"></option>
+                <option value="BCA"></option>
+                <option value="BRI"></option>
+                <option value="BNI"></option>
+                <option value="Bank Syariah Indonesia (BSI)"></option>
+                <option value="CIMB Niaga"></option>
+            </datalist>
         </div>
-        <div class="mb-3">
-          <label class="form-label">Uraian Transaksi</label>
-          <input type="text" name="uraian" class="form-control" placeholder="Contoh: Bayar Listrik">
-        </div>
-        <div class="mb-3">
-          <label class="form-label d-block">Jenis Transaksi</label>
-          <div class="btn-group w-100" role="group">
-            <input type="radio" class="btn-check" name="jenis_transaksi" id="btnDebet" value="Debet" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnDebet">Debet</label>
-            <input type="radio" class="btn-check" name="jenis_transaksi" id="btnKredit" value="Kredit" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnKredit">Kredit</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label class="form-label">Nominal Debet</label>
-            <input type="number" name="debet" class="form-control" value="0">
-          </div>
-          <div class="col-md-6 mb-3">
-            <label class="form-label">Nominal Kredit</label>
-            <input type="number" name="kredit" class="form-control" value="0">
-          </div>
+        <div class="form-group">
+            <label>Nomor Rekening</label>
+            <input type="number" name="rekening" required>
         </div>
 
-        <button type="submit" class="btn btn-success w-100 mt-4" id="submitBtn">Kirim Data</button>
-      </form>
-      <div id="output" class="mt-3 text-center fw-bold"></div>
-    </div>
-  </div>
+        <div class="section-title">Data Transaksi Keuangan</div>
+        <div class="form-group">
+            <label>Tanggal Transaksi</label>
+            <input type="date" name="tanggal_transaksi" required>
+        </div>
+        <div class="form-group">
+            <label>Uraian Transaksi</label>
+            <input type="text" name="uraian" placeholder="Contoh: Pembayaran listrik" required>
+        </div>
+        <div class="form-group">
+            <label>Jenis Transaksi</label>
+            <div class="btn-group">
+                <input type="radio" id="pemasukan" name="jenis_transaksi" value="Pemasukan" required>
+                <label for="pemasukan">Pemasukan</label>
+                
+                <input type="radio" id="pengeluaran" name="jenis_transaksi" value="Pengeluaran">
+                <label for="pengeluaran">Pengeluaran</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Nilai Debet (Rp)</label>
+            <input type="number" name="debet" value="0" min="0">
+        </div>
+        <div class="form-group">
+            <label>Nilai Kredit (Rp)</label>
+            <input type="number" name="kredit" value="0" min="0">
+        </div>
 
-  <script>
-    function handleFormSubmit(formObject) {
-      document.getElementById('submitBtn').disabled = true;
-      document.getElementById('output').innerHTML = "Sedang mengirim...";
-      google.script.run.withSuccessHandler(showSuccess).processForm(formObject);
-    }
+        <button type="submit" class="submit-btn">Kirim Data</button>
+        <div id="loading">Mengirim data, mohon tunggu...</div>
+    </form>
+</div>
 
-    function showSuccess(msg) {
-      document.getElementById('output').innerHTML = msg;
-      document.getElementById('dataForm').reset();
-      document.getElementById('submitBtn').disabled = false;
-    }
-  </script>
+<script>
+    // GANTI URL DI BAWAH DENGAN URL WEB APP GOOGLE SCRIPT ANDA!
+    const scriptURL = 'MASUKKAN_URL_WEB_APP_ANDA_DISINI';
+    const form = document.forms['form-keuangan'];
+    const loading = document.getElementById('loading');
+    const submitBtn = document.querySelector('.submit-btn');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        // Tampilkan indikator loading
+        loading.style.display = 'block';
+        submitBtn.disabled = true;
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                loading.style.display = 'none';
+                submitBtn.disabled = false;
+                alert('Data berhasil disimpan ke Google Sheets!');
+                form.reset(); // Kosongkan form setelah sukses
+            })
+            .catch(error => {
+                loading.style.display = 'none';
+                submitBtn.disabled = false;
+                alert('Terjadi kesalahan! Data gagal dikirim.');
+                console.error('Error!', error.message);
+            })
+    })
+</script>
+
 </body>
 </html>
