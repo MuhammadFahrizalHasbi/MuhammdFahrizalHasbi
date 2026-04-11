@@ -1,77 +1,125 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>INPUT DATA KE SPREAD SHEET</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base target="_top">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <style>
-    /*  */
-    body {
-      background-color: #0c0a0a;
-    }
-    #form-container {
-      width: 500px;
-      margin: 0 auto;
-      background-color: #f1f1f7;
-      border: 2px solid #da0808;
-      border-radius: 10px;
-      padding: 20px;
-    }
-    #form-container h2 {
-      text-align: center;
-      color: #1E90FF;
-    }
-    #form-container input[type="text"], #form-container input[type="date"], #form-container input[type="tel"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 2px solid #f1d0d0;
-      border-radius: 5px;
-    }
-    #form-container input[type="submit"] {
-      background-color: #1E90FF;
-      color: #FFFFFF;
-      border: none;
-      border-radius: 5px;
-      padding: 10px;
-      cursor: pointer;
-    }
-    #form-container input[type="submit"]:hover {
-      background-color: #004B8D;
-    }
-    #footer {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 12px;
-      color: #f7f1f1;
-    }
+    body { background-color: #f8f9fa; padding: 20px; }
+    .form-container { background: white; padding: 30px; border-radius: 10px; shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h4 { border-bottom: 2px solid #0d6efd; padding-bottom: 10px; margin-top: 20px; }
   </style>
 </head>
-
 <body>
-  <div id="form-container">
-    <h2>INPUT DATA KE SPREAD SHEET</h2>
-    <!-- akses link script app -->
-    <form action="https://script.google.com/macros/s/AKfycbyZwQjw3juRmGWIbdi88SKLo-gmSYGJDvZiYVCWArqe7PgFdh2UGjzISIWxyh5gjz5Rdg/exec" method="post">
-    <!-- end akses  -->
+  <div class="container">
+    <div class="form-container shadow-sm mx-auto" style="max-width: 800px;">
+      <h2 class="text-center mb-4">Formulir Pengumpulan Data</h2>
+      <form id="dataForm" onsubmit="handleFormSubmit(this)">
+        
+        <h4>Data Demografi</h4>
+        <div class="mb-3">
+          <label class="form-label">Nama Lengkap</label>
+          <input type="text" name="nama" class="form-control" required>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Tanggal Lahir</label>
+            <input type="date" name="tgl_lahir" class="form-control" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Pendidikan Terakhir</label>
+            <select name="pendidikan" class="form-select" required>
+              <option value="">Pilih Pendidikan...</option>
+              <option value="SD">SD</option>
+              <option value="SMP">SMP</option>
+              <option value="SMA/SMK">SMA/SMK</option>
+              <option value="D3">DIPLOMA (D3)</option>
+              <option value="S1">SARJANA (S1)</option>
+              <option value="S2">MAGISTER (S2)</option>
+              <option value="S3">DOKTOR (S3)</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Alamat</label>
+          <textarea name="alamat" class="form-control" rows="2"></textarea>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">No. Telepon</label>
+            <input type="tel" name="telp" class="form-control">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-control">
+          </div>
+        </div>
 
-        <label for="nama">Nama:</label>
-      <input type="text" id="nama" name="nama" required>
-      <label for="ktp">Nomor KTP:</label>
-      <input type="text" id="ktp" name="ktp" required>
-      <label for="tgl_lahir">Tanggal Lahir:</label>
-      <input type="date" id="tgl_lahir" name="tgl_lahir" required>
-      <label for="alamat">Alamat:</label>
-      <input type="text" id="alamat" name="alamat" required>
-      <label for="no_hp">Nomor HP:</label>
-      <input type="tel" id="no_hp" name="no_hp" pattern="[0-9]{10,12}" required>
-      <input type="submit" value="Simpan Data">
-    </form>
+        <h4>Data Perbankan</h4>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Nama Bank</label>
+            <input class="form-control" list="bankOptions" name="bank" placeholder="Cari bank...">
+            <datalist id="bankOptions">
+              <option value="Bank Mandiri">
+              <option value="Bank BNI">
+              <option value="Bank BRI">
+              <option value="Bank BCA">
+              <option value="Bank Syariah Indonesia (BSI)">
+            </datalist>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Nomor Rekening</label>
+            <input type="number" name="rekening" class="form-control">
+          </div>
+        </div>
+
+        <h4>Data Transaksi Keuangan</h4>
+        <div class="mb-3">
+          <label class="form-label">Tanggal Transaksi</label>
+          <input type="date" name="tgl_transaksi" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Uraian Transaksi</label>
+          <input type="text" name="uraian" class="form-control" placeholder="Contoh: Bayar Listrik">
+        </div>
+        <div class="mb-3">
+          <label class="form-label d-block">Jenis Transaksi</label>
+          <div class="btn-group w-100" role="group">
+            <input type="radio" class="btn-check" name="jenis_transaksi" id="btnDebet" value="Debet" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnDebet">Debet</label>
+            <input type="radio" class="btn-check" name="jenis_transaksi" id="btnKredit" value="Kredit" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnKredit">Kredit</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Nominal Debet</label>
+            <input type="number" name="debet" class="form-control" value="0">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Nominal Kredit</label>
+            <input type="number" name="kredit" class="form-control" value="0">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100 mt-4" id="submitBtn">Kirim Data</button>
+      </form>
+      <div id="output" class="mt-3 text-center fw-bold"></div>
+    </div>
   </div>
 
-  <div id="footer">
-    All Tutorial for you, jagan lupa subcribe karna akan selalu ada update
-  </div>
+  <script>
+    function handleFormSubmit(formObject) {
+      document.getElementById('submitBtn').disabled = true;
+      document.getElementById('output').innerHTML = "Sedang mengirim...";
+      google.script.run.withSuccessHandler(showSuccess).processForm(formObject);
+    }
 
+    function showSuccess(msg) {
+      document.getElementById('output').innerHTML = msg;
+      document.getElementById('dataForm').reset();
+      document.getElementById('submitBtn').disabled = false;
+    }
+  </script>
 </body>
 </html>
