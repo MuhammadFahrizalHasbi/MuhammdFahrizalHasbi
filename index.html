@@ -1,149 +1,74 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Pendataan Keuangan</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f7f6; padding: 20px; }
-        .container { max-width: 600px; background: white; padding: 25px; margin: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        h2 { text-align: center; color: #333; }
-        .section-title { background: #007bff; color: white; padding: 10px; margin-top: 20px; border-radius: 5px; font-size: 16px; }
-        .form-group { margin-top: 15px; }
-        label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
-        input[type="text"], input[type="date"], input[type="email"], input[type="number"], textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        
-        /* Styling untuk Radio Button agar terlihat seperti Tombol */
-        .btn-group { display: flex; gap: 10px; }
-        .btn-group input[type="radio"] { display: none; }
-        .btn-group label { flex: 1; text-align: center; padding: 10px; background: #e9ecef; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; transition: 0.3s; font-weight: normal; }
-        .btn-group input[type="radio"]:checked + label { background: #28a745; color: white; border-color: #28a745; font-weight: bold; }
-        
-        .submit-btn { margin-top: 25px; width: 100%; padding: 12px; background: #007bff; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; font-weight: bold; }
-        .submit-btn:hover { background: #0056b3; }
-        #loading { display: none; text-align: center; margin-top: 15px; color: #007bff; font-weight: bold; }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Formulir Keuangan</title>
 </head>
-<body>
-
-<div class="container">
-    <h2>Formulir Data Keuangan</h2>
-    <form id="form-keuangan">
+<body class="bg-gray-100 p-8">
+    <form id="financeForm" class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
         
-        <div class="section-title">Data Demografi</div>
-        <div class="form-group">
-            <label>Nama Pengguna</label>
-            <input type="text" name="nama" required>
-        </div>
-        <div class="form-group">
-            <label>Tanggal Lahir</label>
-            <input type="date" name="tanggal_lahir" required>
-        </div>
-        <div class="form-group">
-            <label>Alamat</label>
-            <textarea name="alamat" rows="3" required></textarea>
-        </div>
-        <div class="form-group">
-            <label>No Telepon</label>
-            <input type="text" name="telepon" required>
-        </div>
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label>Pendidikan Terakhir (Pilih atau Ketik)</label>
-            <input list="list-pendidikan" name="pendidikan" placeholder="Cari atau pilih..." required>
-            <datalist id="list-pendidikan">
-                <option value="SD"></option>
-                <option value="SMP"></option>
-                <option value="SMA/SMK"></option>
-                <option value="D3/Diploma"></option>
-                <option value="S1/Sarjana"></option>
-                <option value="S2/Magister"></option>
-            </datalist>
+        <h2 class="text-xl font-bold mb-4 border-b pb-2">Data Demografi</h2>
+        <div class="grid grid-cols-1 gap-4 mb-6">
+            <input type="text" name="nama" placeholder="Nama Lengkap" class="border p-2 rounded" required>
+            <input type="date" name="tgl_lahir" class="border p-2 rounded" required>
+            <textarea name="alamat" placeholder="Alamat Lengkap" class="border p-2 rounded"></textarea>
+            <input type="tel" name="telepon" placeholder="No. Telepon" class="border p-2 rounded">
+            <input type="email" name="email" placeholder="Email" class="border p-2 rounded">
+            
+            <select name="pendidikan" class="border p-2 rounded">
+                <option value="">Pilih Pendidikan</option>
+                <option value="SMA">SMA/Sederajat</option>
+                <option value="D3">Diploma (D3)</option>
+                <option value="S1">Sarjana (S1)</option>
+                <option value="S2">Magister (S2)</option>
+            </select>
         </div>
 
-        <div class="section-title">Data Bank</div>
-        <div class="form-group">
-            <label>Nama Bank (Pilih atau Ketik)</label>
-            <input list="list-bank" name="bank" placeholder="Cari bank..." required>
-            <datalist id="list-bank">
-                <option value="Bank Mandiri"></option>
-                <option value="BCA"></option>
-                <option value="BRI"></option>
-                <option value="BNI"></option>
-                <option value="Bank Syariah Indonesia (BSI)"></option>
-                <option value="CIMB Niaga"></option>
-            </datalist>
-        </div>
-        <div class="form-group">
-            <label>Nomor Rekening</label>
-            <input type="number" name="rekening" required>
+        <h2 class="text-xl font-bold mb-4 border-b pb-2">Data Perbankan</h2>
+        <div class="grid grid-cols-1 gap-4 mb-6">
+            <select name="bank" class="border p-2 rounded">
+                <option value="">Pilih Bank</option>
+                <option value="BCA">Bank Central Asia (BCA)</option>
+                <option value="Mandiri">Bank Mandiri</option>
+                <option value="BNI">Bank Negara Indonesia (BNI)</option>
+                <option value="BRI">Bank Rakyat Indonesia (BRI)</option>
+            </select>
+            <input type="number" name="rekening" placeholder="Nomor Rekening" class="border p-2 rounded">
         </div>
 
-        <div class="section-title">Data Transaksi Keuangan</div>
-        <div class="form-group">
-            <label>Tanggal Transaksi</label>
-            <input type="date" name="tanggal_transaksi" required>
-        </div>
-        <div class="form-group">
-            <label>Uraian Transaksi</label>
-            <input type="text" name="uraian" placeholder="Contoh: Pembayaran listrik" required>
-        </div>
-        <div class="form-group">
-            <label>Jenis Transaksi</label>
-            <div class="btn-group">
-                <input type="radio" id="pemasukan" name="jenis_transaksi" value="Pemasukan" required>
-                <label for="pemasukan">Pemasukan</label>
-                
-                <input type="radio" id="pengeluaran" name="jenis_transaksi" value="Pengeluaran">
-                <label for="pengeluaran">Pengeluaran</label>
+        <h2 class="text-xl font-bold mb-4 border-b pb-2">Data Transaksi</h2>
+        <div class="grid grid-cols-1 gap-4 mb-6">
+            <input type="date" name="tgl_transaksi" class="border p-2 rounded">
+            <input type="text" name="uraian" placeholder="Uraian Transaksi" class="border p-2 rounded">
+            
+            <div class="flex gap-4">
+                <label class="flex items-center">
+                    <input type="radio" name="jenis_transaksi" value="Pemasukan" class="mr-2"> Pemasukan
+                </label>
+                <label class="flex items-center">
+                    <input type="radio" name="jenis_transaksi" value="Pengeluaran" class="mr-2"> Pengeluaran
+                </label>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-2">
+                <input type="number" name="debet" placeholder="Debet (Rp)" class="border p-2 rounded">
+                <input type="number" name="kredit" placeholder="Kredit (Rp)" class="border p-2 rounded">
             </div>
         </div>
-        <div class="form-group">
-            <label>Nilai Debet (Rp)</label>
-            <input type="number" name="debet" value="0" min="0">
-        </div>
-        <div class="form-group">
-            <label>Nilai Kredit (Rp)</label>
-            <input type="number" name="kredit" value="0" min="0">
-        </div>
 
-        <button type="submit" class="submit-btn">Kirim Data</button>
-        <div id="loading">Mengirim data, mohon tunggu...</div>
+        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded font-bold hover:bg-blue-700">Kirim Data</button>
     </form>
-</div>
 
-<script>
-    
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxeSpy4U3VTGAvK7DWn4hRNZpUNqx9AzDlQaCX4jIl6WycHQmHHvac-mEsJp1Az1W8-/exec";
-    const form = document.forms['form-keuangan'];
-    const loading = document.getElementById('loading');
-    const submitBtn = document.querySelector('.submit-btn');
+    <script>
+        const scriptURL = 'URL_WEB_APP_ANDA_DISINI';
+        const form = document.getElementById('financeForm');
 
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        
-        // Tampilkan indikator loading
-        loading.style.display = 'block';
-        submitBtn.disabled = true;
-
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                loading.style.display = 'none';
-                submitBtn.disabled = false;
-                alert('Data berhasil disimpan ke Google Sheets!');
-                form.reset(); // Kosongkan form setelah sukses
-            })
-            .catch(error => {
-                loading.style.display = 'none';
-                submitBtn.disabled = false;
-                alert('Terjadi kesalahan! Data gagal dikirim.');
-                console.error('Error!', error.message);
-            })
-    })
-</script>
-
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => alert('Data berhasil terkirim!'))
+                .catch(error => console.error('Error!', error.message));
+        });
+    </script>
 </body>
 </html>
