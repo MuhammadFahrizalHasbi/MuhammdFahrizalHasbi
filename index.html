@@ -1,77 +1,194 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="id">
 <head>
-  <title>INPUT DATA KE SPREAD SHEET</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    /*  */
-    body {
-      background-color: #0c0a0a;
-    }
-    #form-container {
-      width: 500px;
-      margin: 0 auto;
-      background-color: #f1f1f7;
-      border: 2px solid #da0808;
-      border-radius: 10px;
-      padding: 20px;
-    }
-    #form-container h2 {
-      text-align: center;
-      color: #1E90FF;
-    }
-    #form-container input[type="text"], #form-container input[type="date"], #form-container input[type="tel"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 2px solid #f1d0d0;
-      border-radius: 5px;
-    }
-    #form-container input[type="submit"] {
-      background-color: #1E90FF;
-      color: #FFFFFF;
-      border: none;
-      border-radius: 5px;
-      padding: 10px;
-      cursor: pointer;
-    }
-    #form-container input[type="submit"]:hover {
-      background-color: #004B8D;
-    }
-    #footer {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 12px;
-      color: #f7f1f1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Input Data RGB</title>
+    <style>
+        :root {
+            --red: #ff0000;
+            --green: #00ff00;
+            --blue: #00d2ff;
+            --bg: #080808;
+            --card-bg: #151515;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #222;
+            border: 1px solid #444;
+            color: #888;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            color: #fff;
+            border-color: var(--green);
+            box-shadow: 0 0 10px var(--green);
+        }
+
+        /* Form Container General */
+        .form-section {
+            display: none;
+            width: 100%;
+            max-width: 450px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .form-section.active { display: block; }
+
+        h2 { text-align: center; margin-top: 0; text-transform: uppercase; letter-spacing: 2px; }
+
+        .input-group { margin-bottom: 15px; position: relative; }
+        label { display: block; margin-bottom: 5px; font-size: 0.85em; color: #aaa; }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background: #222;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        /* Specific Accents */
+        #demografi-form { border: 2px solid var(--red); box-shadow: 0 0 15px rgba(255,0,0,0.2); }
+        #demografi-form h2 { color: var(--red); }
+        #demografi-form input:focus { border-color: var(--red); box-shadow: 0 0 8px var(--red); }
+
+        #bank-form { border: 2px solid var(--blue); box-shadow: 0 0 15px rgba(0,210,255,0.2); }
+        #bank-form h2 { color: var(--blue); }
+        #bank-form input:focus { border-color: var(--blue); box-shadow: 0 0 8px var(--blue); }
+
+        #transaksi-form { border: 2px solid var(--green); box-shadow: 0 0 15px rgba(0,255,0,0.2); }
+        #transaksi-form h2 { color: var(--green); }
+        #transaksi-form input:focus { border-color: var(--green); box-shadow: 0 0 8px var(--green); }
+
+        button.submit-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #fff;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .red-btn { background: var(--red); box-shadow: 0 0 10px var(--red); }
+        .blue-btn { background: var(--blue); box-shadow: 0 0 10px var(--blue); }
+        .green-btn { background: var(--green); box-shadow: 0 0 10px var(--green); }
+
+        button.submit-btn:hover { opacity: 0.8; transform: translateY(-2px); }
+    </style>
 </head>
-
 <body>
-  <div id="form-container">
-    <h2>INPUT DATA KE SPREAD SHEET</h2>
-    <!-- akses link script app -->
-    <form action="https://script.google.com/macros/s/AKfycbz3gLXydvh7IS8CGs6I5fkY8X0CkMFofSZypJSsa2iqwsaxcIY6T8C85M-aC2lXjhSH/exec" method="post">
-    <!-- end akses  -->
 
-        <label for="nama">Nama:</label>
-      <input type="text" id="nama" name="nama" required>
-      <label for="ktp">Nomor KTP:</label>
-      <input type="text" id="ktp" name="ktp" required>
-      <label for="tgl_lahir">Tanggal Lahir:</label>
-      <input type="date" id="tgl_lahir" name="tgl_lahir" required>
-      <label for="alamat">Alamat:</label>
-      <input type="text" id="alamat" name="alamat" required>
-      <label for="no_hp">Nomor HP:</label>
-      <input type="tel" id="no_hp" name="no_hp" pattern="[0-9]{10,12}" required>
-      <input type="submit" value="Simpan Data">
-    </form>
-  </div>
+    <div class="tabs">
+        <div class="tab-btn active" onclick="showForm('demografi', this)">Demografi</div>
+        <div class="tab-btn" onclick="showForm('bank', this)">Data Bank</div>
+        <div class="tab-btn" onclick="showForm('transaksi', this)">Transaksi</div>
+    </div>
 
-  <div id="footer">
-    All Tutorial for you, jagan lupa subcribe karna akan selalu ada update
-  </div>
+    <div id="demografi-form" class="form-section active">
+        <h2>Demografi</h2>
+        <div class="input-group">
+            <label>Nama Lengkap</label>
+            <input type="text" placeholder="John Doe">
+        </div>
+        <div class="input-group">
+            <label>Usia</label>
+            <input type="number">
+        </div>
+        <div class="input-group">
+            <label>Jenis Kelamin</label>
+            <select>
+                <option>Laki-laki</option>
+                <option>Perempuan</option>
+            </select>
+        </div>
+        <button class="submit-btn red-btn">Simpan Profil</button>
+    </div>
+
+    <div id="bank-form" class="form-section">
+        <h2>Data Perbankan</h2>
+        <div class="input-group">
+            <label>Nama Bank</label>
+            <input type="text" placeholder="e.g. BCA / Mandiri">
+        </div>
+        <div class="input-group">
+            <label>Nomor Rekening</label>
+            <input type="text" placeholder="0000-0000-0000">
+        </div>
+        <div class="input-group">
+            <label>Nama Pemilik</label>
+            <input type="text">
+        </div>
+        <button class="submit-btn blue-btn">Hubungkan Bank</button>
+    </div>
+
+    <div id="transaksi-form" class="form-section">
+        <h2>Transaksi Baru</h2>
+        <div class="input-group">
+            <label>ID Transaksi</label>
+            <input type="text" value="#TRX-8821" readonly>
+        </div>
+        <div class="input-group">
+            <label>Nominal (IDR)</label>
+            <input type="number" placeholder="50000">
+        </div>
+        <div class="input-group">
+            <label>Keterangan</label>
+            <input type="text">
+        </div>
+        <button class="submit-btn green-btn">Proses Pembayaran</button>
+    </div>
+
+    <script>
+        function showForm(formId, btn) {
+            // Sembunyikan semua form
+            document.querySelectorAll('.form-section').forEach(f => f.classList.remove('active'));
+            // Nonaktifkan semua tab
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            // Tampilkan form yang dipilih
+            document.getElementById(formId + '-form').classList.add('active');
+            // Aktifkan tab yang diklik
+            btn.classList.add('active'); 
+          }
+      <form action="https://script.google.com/macros/s/AKfycbyZwQjw3juRmGWIbdi88SKLo-gmSYGJDvZiYVCWArqe7PgFdh2UGjzISIWxyh5gjz5Rdg/exec" method="post">
+    </script>
+    
 
 </body>
 </html>
