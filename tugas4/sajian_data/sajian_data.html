@@ -1,63 +1,80 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Perusahaan</title>
-    <style>
-        /* CSS Dashboard */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; display: flex; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard Sajian Data</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-        /* Sidebar Styling */
-        .sidebar { width: 250px; background: #2c3e50; color: white; height: 100vh; padding: 20px; position: fixed; }
-        .sidebar h2 { margin-bottom: 30px; font-size: 1.2rem; text-align: center; }
-        .sidebar ul { list-style: none; }
-        .sidebar ul li { padding: 15px 0; border-bottom: 1px solid #3e4f5f; cursor: pointer; }
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
 
-        /* Main Content Styling */
-        .main-content { margin-left: 250px; padding: 20px; width: calc(100% - 250px); }
-        .header { background: white; padding: 15px 25px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        
-        /* Dashboard Container */
-        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .iframe-container { position: relative; width: 100%; height: 600px; }
-        
-        iframe { width: 100%; height: 100%; border: none; border-radius: 8px; }
-    </style>
+  /* Container untuk Dashboard */
+  .dashboard-container {
+    width: 100%;
+    max-width: 1200px; /* Lebar maksimal dashboard */
+    background: #fff;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  .responsive-iframe {
+    width: 100%;
+    height: 700px; /* Tinggi dashboard */
+    border: none;
+    border-radius: 8px;
+  }
+
+  .nav-back {
+    margin-top: 25px;
+  }
+
+  .nav-back a {
+    text-decoration: none;
+    color: #4285F4;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2px solid #4285F4;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+
+  .nav-back a:hover {
+    background-color: #4285F4;
+    color: #fff;
+  }
+</style>
 </head>
 <body>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h2>My Dashboard</h2>
-        <ul>
-            <li>Analisis Penjualan</li>
-            <li>Data Stok</li>
-            <li>Laporan User</li>
-            <li>Pengaturan</li>
-        </ul>
-    </div>
+  <div class="header">
+    <h1>Dashboard Sajian Data</h1>
+  </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="header">
-            <h1>Selamat Datang, Admin</h1>
-        </div>
+  <div class="dashboard-container">
+    <!-- Ganti URL embed di bawah ini dengan link 'Embed Report' dari Looker Studio Anda -->
+    <iframe 
+      class="responsive-iframe" 
+      src="https://datastudio.google.com/reporting/4e24bac8-047a-4adb-82cf-205ec29dc9ba" 
+      allowfullscreen>
+    </iframe>
+  </div>
 
-        <div class="card">
-            <h3>Visualisasi Data Google Sheets</h3>
-            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
-            
-            <div class="iframe-container">
-                <!-- GANTI URL DI BAWAH INI DENGAN LINK EMBED LOOKER STUDIO ANDA -->
-                <iframe 
-                    src="https://datastudio.google.com/reporting/4e24bac8-047a-4adb-82cf-205ec29dc9ba" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-    </div>
+  <div class="nav-back">
+    <a href="../index2.html">← Kembali ke Halaman Utama</a>
+  </div>
 
 </body>
 </html>
