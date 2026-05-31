@@ -175,7 +175,7 @@
       background: rgba(255, 255, 255, 0.3);
     }
 
-    .back-button {
+    .home-button {
       position: absolute;
       top: 1rem;
       right: 1rem;
@@ -193,9 +193,10 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       z-index: 1001;
       font-size: 1.2rem;
+      text-decoration: none;
     }
 
-    .back-button:hover {
+    .home-button:hover {
       background: rgba(255, 255, 255, 0.3);
     }
 
@@ -312,6 +313,13 @@
       header h3 {
         font-size: 1rem;
       }
+
+      .home-button {
+        width: 40px;
+        height: 40px;
+        top: 0.75rem;
+        right: 0.75rem;
+      }
     }
   </style>
 </head>
@@ -350,9 +358,9 @@
         <span></span>
       </span>
     </button>
-    <button class="back-button" onclick="index.html" aria-label="Kembali">
-      <i class="fa-solid fa-arrow-left"></i>
-    </button>
+    <a href="index.html" class="home-button" title="Kembali ke Halaman Utama">
+      <i class="fa-solid fa-home"></i>
+    </a>
     <h1>SISTEM INFORMASI MANAJEMEN PERIKANAN</h1>
     <h3>POKDAKAN</h3>
     <p>
@@ -397,14 +405,6 @@
     function closeSidebar() {
       sidebar.classList.remove("active");
       overlay.classList.remove("active");
-    }
-
-    function goBack() {
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        alert("Tidak ada halaman sebelumnya untuk dikunjungi");
-      }
     }
   </script>
 </body>
