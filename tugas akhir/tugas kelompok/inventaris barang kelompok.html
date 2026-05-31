@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventaris Barang Kelompok</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(90deg, #2caabe, #3282b8);
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+    }
+    header h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    .content-container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.6rem;
+      color: #3a6b9d;
+    }
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .card h2 {
+      color: #2caabe;
+      margin-bottom: 1.5rem;
+      font-size: 1.4rem;
+      border-bottom: 2px solid #e0f7ff;
+      padding-bottom: 0.5rem;
+    }
+    .card h3 {
+      color: #3a6b9d;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #3a6b9d;
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.2s ease;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #2caabe;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background-color: #2caabe;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      text-decoration: none;
+      text-align: center;
+    }
+    .btn:hover {
+      background-color: #3d5887;
+    }
+    .btn-danger {
+      background-color: #e74c3c;
+    }
+    .btn-danger:hover {
+      background-color: #c0392b;
+    }
+    .btn-warning {
+      background-color: #f39c12;
+    }
+    .btn-warning:hover {
+      background-color: #d68910;
+    }
+    .btn-success {
+      background-color: #27ae60;
+    }
+    .btn-success:hover {
+      background-color: #229954;
+    }
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .search-box {
+      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 1rem;
+    }
+    .search-box input {
+      padding: 0.8rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .table-responsive {
+      overflow-x: auto;
+      margin-top: 1.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    thead {
+      background-color: #2caabe;
+      color: white;
+    }
+    th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    tbody tr:hover {
+      background-color: #f5f5f5;
+    }
+    .status {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .status.baik {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .status.rusak {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .status.perlu-perbaikan {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .action-buttons button {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.3s;
+    }
+    .modal-content {
+      background-color: white;
+      margin: 5% auto;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      animation: slideIn 0.3s;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #e0f7ff;
+      padding-bottom: 1rem;
+    }
+    .modal-header h2 {
+      color: #2caabe;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #999;
+    }
+    .close-btn:hover {
+      color: #333;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .back-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #2caabe;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: background 0.2s ease;
+    }
+    .back-button:hover {
+      background-color: #3d5887;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: linear-gradient(135deg, #2caabe, #3282b8);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-card h3 {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.9;
+    }
+    .stat-card .number {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 2rem;
+      color: #999;
+    }
+    .empty-state p {
+      margin-bottom: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1.2rem 1rem;
+      background-color: #2caabe;
+      color: eaf3fb;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SISTEM INFORMASI MANAJEMEN PERIKANAN</h1>
+    <h3>POKDAKAN</h3>
+    <p>Halaman Inventaris Barang Kelompok</p>
+  </header>
+
+  <div class="content-container">
+    <h2 class="section-title">INVENTARIS BARANG KELOMPOK</h2>
+
+    <!-- Statistics Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Barang</h3>
+        <div class="number" id="totalBarang">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Barang Baik</h3>
+        <div class="number" id="barangBaik">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Barang Rusak</h3>
+        <div class="number" id="barangRusak">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Perlu Perbaikan</h3>
+        <div class="number" id="barangPerbaikan">0</div>
+      </div>
+    </div>
+
+    <!-- Form Input -->
+    <div class="card">
+      <h2>Tambah Barang Inventaris</h2>
+      <form id="formInputBarang">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="namaBarang">Nama Barang *</label>
+            <input type="text" id="namaBarang" placeholder="Contoh: Jaring Ikan" required />
+          </div>
+          <div class="form-group">
+            <label for="kategori">Kategori *</label>
+            <select id="kategori" required>
+              <option value="">Pilih Kategori</option>
+              <option value="Alat Tangkap">Alat Tangkap</option>
+              <option value="Alat Budidaya">Alat Budidaya</option>
+              <option value="Alat Panen">Alat Panen</option>
+              <option value="Transportasi">Transportasi</option>
+              <option value="Peralatan Kantor">Peralatan Kantor</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="jumlah">Jumlah *</label>
+            <input type="number" id="jumlah" placeholder="Jumlah barang" min="1" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="tanggalPerolehan">Tanggal Perolehan</label>
+            <input type="date" id="tanggalPerolehan" />
+          </div>
+          <div class="form-group">
+            <label for="status">Status *</label>
+            <select id="status" required>
+              <option value="">Pilih Status</option>
+              <option value="baik">Baik</option>
+              <option value="rusak">Rusak</option>
+              <option value="perlu-perbaikan">Perlu Perbaikan</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="lokasi">Lokasi Penyimpanan</label>
+            <input type="text" id="lokasi" placeholder="Contoh: Gudang Utama" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="keterangan">Keterangan</label>
+          <textarea id="keterangan" placeholder="Masukkan keterangan tambahan" rows="3"></textarea>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn">Tambah Barang</button>
+          <button type="reset" class="btn btn-warning">Bersihkan Form</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Table -->
+    <div class="card">
+      <h2>Daftar Inventaris Barang</h2>
+      
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Cari nama barang..." />
+        <select id="filterKategori">
+          <option value="">Semua Kategori</option>
+          <option value="Alat Tangkap">Alat Tangkap</option>
+          <option value="Alat Budidaya">Alat Budidaya</option>
+          <option value="Alat Panen">Alat Panen</option>
+          <option value="Transportasi">Transportasi</option>
+          <option value="Peralatan Kantor">Peralatan Kantor</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+        <button class="btn btn-success" onclick="exportToCSV()">Export CSV</button>
+      </div>
+
+      <div class="table-responsive">
+        <table id="inventariTable">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Barang</th>
+              <th>Kategori</th>
+              <th>Jumlah</th>
+              <th>Tanggal Perolehan</th>
+              <th>Status</th>
+              <th>Lokasi</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr>
+              <td colspan="8" class="empty-state">
+                <p>Belum ada data inventaris. Tambahkan barang terlebih dahulu.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <a href="index.html" class="back-button">Kembali ke Menu Utama</a>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Edit Barang</h2>
+        <button class="close-btn" onclick="closeEditModal()">&times;</button>
+      </div>
+      <form id="formEditBarang">
+        <div class="form-group">
+          <label for="editNamaBarang">Nama Barang</label>
+          <input type="text" id="editNamaBarang" required />
+        </div>
+        <div class="form-group">
+          <label for="editKategori">Kategori</label>
+          <select id="editKategori" required>
+            <option value="">Pilih Kategori</option>
+            <option value="Alat Tangkap">Alat Tangkap</option>
+            <option value="Alat Budidaya">Alat Budidaya</option>
+            <option value="Alat Panen">Alat Panen</option>
+            <option value="Transportasi">Transportasi</option>
+            <option value="Peralatan Kantor">Peralatan Kantor</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="editJumlah">Jumlah</label>
+          <input type="number" id="editJumlah" min="1" required />
+        </div>
+        <div class="form-group">
+          <label for="editTanggal">Tanggal Perolehan</label>
+          <input type="date" id="editTanggal" />
+        </div>
+        <div class="form-group">
+          <label for="editStatus">Status</label>
+          <select id="editStatus" required>
+            <option value="">Pilih Status</option>
+            <option value="baik">Baik</option>
+            <option value="rusak">Rusak</option>
+            <option value="perlu-perbaikan">Perlu Perbaikan</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="editLokasi">Lokasi Penyimpanan</label>
+          <input type="text" id="editLokasi" />
+        </div>
+        <div class="form-group">
+          <label for="editKeterangan">Keterangan</label>
+          <textarea id="editKeterangan" rows="3"></textarea>
+        </div>
+        <div class="button-group">
+          <button type="submit" class="btn">Simpan Perubahan</button>
+          <button type="button" class="btn btn-warning" onclick="closeEditModal()">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    SISTEM INFORMASI MANAJEMEN PERIKANAN <span id="name">KELOMPOK 2 - </span>POKDAKAN
+  </footer>
+
+  <script>
+    let inventaris = [];
+    let editingIndex = -1;
+
+    // Load data from localStorage
+    function loadData() {
+      const saved = localStorage.getItem('inventaris');
+      if (saved) {
+        inventaris = JSON.parse(saved);
+        renderTable();
+        updateStats();
+      }
+    }
+
+    // Save data to localStorage
+    function saveData() {
+      localStorage.setItem('inventaris', JSON.stringify(inventaris));
+    }
+
+    // Form submit
+    document.getElementById('formInputBarang').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const newItem = {
+        id: Date.now(),
+        namaBarang: document.getElementById('namaBarang').value,
+        kategori: document.getElementById('kategori').value,
+        jumlah: parseInt(document.getElementById('jumlah').value),
+        tanggalPerolehan: document.getElementById('tanggalPerolehan').value,
+        status: document.getElementById('status').value,
+        lokasi: document.getElementById('lokasi').value,
+        keterangan: document.getElementById('keterangan').value
+      };
+
+      inventaris.push(newItem);
+      saveData();
+      renderTable();
+      updateStats();
+      this.reset();
+      alert('Barang berhasil ditambahkan!');
+    });
+
+    // Render table
+    function renderTable() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const filterKategori = document.getElementById('filterKategori').value;
+      
+      const filtered = inventaris.filter(item => {
+        const matchSearch = item.namaBarang.toLowerCase().includes(searchTerm);
+        const matchKategori = filterKategori === '' || item.kategori === filterKategori;
+        return matchSearch && matchKategori;
+      });
+
+      const tbody = document.getElementById('tableBody');
+      
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><p>Tidak ada data yang sesuai dengan pencarian.</p></td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map((item, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td><strong>${item.namaBarang}</strong></td>
+          <td>${item.kategori}</td>
+          <td>${item.jumlah}</td>
+          <td>${item.tanggalPerolehan || '-'}</td>
+          <td><span class="status ${item.status}">${getStatusLabel(item.status)}</span></td>
+          <td>${item.lokasi || '-'}</td>
+          <td>
+            <div class="action-buttons">
+              <button class="btn" onclick="editItem(${inventaris.indexOf(item)})">Edit</button>
+              <button class="btn btn-danger" onclick="deleteItem(${inventaris.indexOf(item)})">Hapus</button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // Get status label
+    function getStatusLabel(status) {
+      const labels = {
+        'baik': 'Baik',
+        'rusak': 'Rusak',
+        'perlu-perbaikan': 'Perlu Perbaikan'
+      };
+      return labels[status] || status;
+    }
+
+    // Update statistics
+    function updateStats() {
+      document.getElementById('totalBarang').textContent = inventaris.length;
+      document.getElementById('barangBaik').textContent = inventaris.filter(i => i.status === 'baik').length;
+      document.getElementById('barangRusak').textContent = inventaris.filter(i => i.status === 'rusak').length;
+      document.getElementById('barangPerbaikan').textContent = inventaris.filter(i => i.status === 'perlu-perbaikan').length;
+    }
+
+    // Edit item
+    function editItem(index) {
+      editingIndex = index;
+      const item = inventaris[index];
+      
+      document.getElementById('editNamaBarang').value = item.namaBarang;
+      document.getElementById('editKategori').value = item.kategori;
+      document.getElementById('editJumlah').value = item.jumlah;
+      document.getElementById('editTanggal').value = item.tanggalPerolehan;
+      document.getElementById('editStatus').value = item.status;
+      document.getElementById('editLokasi').value = item.lokasi;
+      document.getElementById('editKeterangan').value = item.keterangan;
+      
+      document.getElementById('editModal').style.display = 'block';
+    }
+
+    // Close edit modal
+    function closeEditModal() {
+      document.getElementById('editModal').style.display = 'none';
+      editingIndex = -1;
+    }
+
+    // Save edit
+    document.getElementById('formEditBarang').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      inventaris[editingIndex] = {
+        ...inventaris[editingIndex],
+        namaBarang: document.getElementById('editNamaBarang').value,
+        kategori: document.getElementById('editKategori').value,
+        jumlah: parseInt(document.getElementById('editJumlah').value),
+        tanggalPerolehan: document.getElementById('editTanggal').value,
+        status: document.getElementById('editStatus').value,
+        lokasi: document.getElementById('editLokasi').value,
+        keterangan: document.getElementById('editKeterangan').value
+      };
+
+      saveData();
+      renderTable();
+      updateStats();
+      closeEditModal();
+      alert('Barang berhasil diperbarui!');
+    });
+
+    // Delete item
+    function deleteItem(index) {
+      if (confirm('Apakah Anda yakin ingin menghapus barang ini?')) {
+        inventaris.splice(index, 1);
+        saveData();
+        renderTable();
+        updateStats();
+        alert('Barang berhasil dihapus!');
+      }
+    }
+
+    // Search
+    document.getElementById('searchInput').addEventListener('keyup', renderTable);
+    document.getElementById('filterKategori').addEventListener('change', renderTable);
+
+    // Export to CSV
+    function exportToCSV() {
+      if (inventaris.length === 0) {
+        alert('Tidak ada data untuk diekspor!');
+        return;
+      }
+
+      const headers = ['No', 'Nama Barang', 'Kategori', 'Jumlah', 'Tanggal Perolehan', 'Status', 'Lokasi', 'Keterangan'];
+      const data = inventaris.map((item, index) => [
+        index + 1,
+        item.namaBarang,
+        item.kategori,
+        item.jumlah,
+        item.tanggalPerolehan || '-',
+        getStatusLabel(item.status),
+        item.lokasi || '-',
+        item.keterangan || '-'
+      ]);
+
+      const csv = [
+        headers.join(','),
+        ...data.map(row => row.map(cell => `"${cell}"`).join(','))
+      ].join('\n');
+
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `inventaris_${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('editModal');
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+
+    // Load data on page load
+    loadData();
+
+    // Sample data for demo (uncomment to use)
+    // function addSampleData() {
+    //   inventaris = [
+    //     { id: 1, namaBarang: 'Jaring Ikan', kategori: 'Alat Tangkap', jumlah: 5, tanggalPerolehan: '2024-01-15', status: 'baik', lokasi: 'Gudang Utama', keterangan: 'Kondisi baik, siap pakai' },
+    //     { id: 2, namaBarang: 'Pompa Air', kategori: 'Alat Budidaya', jumlah: 2, tanggalPerolehan: '2023-06-20', status: 'perlu-perbaikan', lokasi: 'Kolam Utama', keterangan: 'Perlu maintenance' }
+    //   ];
+    //   saveData();
+    //   renderTable();
+    //   updateStats();
+    // }
+  </script>
+</body>
+</html>
