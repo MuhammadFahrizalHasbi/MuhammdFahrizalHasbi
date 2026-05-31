@@ -81,6 +81,24 @@
     .button-container {
       text-align: center;
     }
+    .dashboard-container {
+      background-color: #f9f9f9;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+      overflow: hidden;
+    }
+    .dashboard-container iframe {
+      width: 100%;
+      height: 600px;
+      border-radius: 8px;
+    }
+    @media (max-width: 768px) {
+      .dashboard-container iframe {
+        height: 400px;
+      }
+    }
     footer {
       text-align: center;
       padding: 1.2rem 1rem;
@@ -105,12 +123,11 @@
       <h2>Formulir Input Inventaris Barang</h2>
       <p>Pokdakan (Kelompok Pembudidaya Ikan) adalah kelompok formal yang dibentuk oleh para pembudidaya ikan untuk saling berbagi pengetahuan, mengakses bantuan pemerintah, dan meningkatkan pengelolaannya. Sistem inventaris barang membantu mengelola dan mencatat semua barang milik kelompok dengan lebih terorganisir dan transparan.</p>
       <div class="button-container">
-        <a href="https://forms.gle/dbF1Vun7BNDWixcp8" class="back-button" target="_blank">Input Inventaris Barang</a>
-        <a href="https://docs.google.com/spreadsheets/d/1cSY-WCRF8KInBfxDoiYExICo7IHOIs1B-nOpKTD1JGE/edit?usp=sharing" class="back-button" target="_blank">Lihat Data Inventaris</a>
+        <a href="https://forms.gle/ANW9MFD8DKNXxF5R7" target="_blank">Input Inventaris Barang</a>
+        <a href="https://docs.google.com/spreadsheets/d/1I-lprZhxM4nLWE39uv0OIG9O4q5fdigoHmFr7g6Bruk/edit?usp=sharing" class="back-button" target="_blank">Lihat Data Inventaris</a>
       </div>
     </div>
-    
-        <div class="card">
+ <div class="card">
       <h2>Survei Kepuasan Pengguna</h2>
       <p>Evaluasi layanan adalah proses penilaian sistematis terhadap kinerja, kualitas, efektivitas, dan efisiensi layanan yang diberikan oleh suatu lembaga atau entitas kepada pengguna layanannya.</p>
       <div class="button-container">
@@ -118,6 +135,23 @@
         <a href="https://docs.google.com/spreadsheets/d/1I-lprZhxM4nLWE39uv0OIG9O4q5fdigoHmFr7g6Bruk/edit?usp=sharing" class="back-button" target="_blank">Lihat Data Inventaris</a>
       </div>
     </div>
+
+
+    <!-- Data Studio Dashboard -->
+    <div class="card">
+      <h2>Dashboard Data Inventaris</h2>
+      <p>Visualisasi data inventaris barang kelompok dalam bentuk dashboard interaktif. Dashboard ini menampilkan statistik dan analisis real-time dari data inventaris yang telah diinputkan.</p>
+      <div class="button-container" style="margin-bottom: 1.5rem;">
+        <a href="https://datastudio.google.com/reporting/46560b36-afa0-4930-b1ee-262bf5417ad8" class="back-button" target="_blank">Buka Dashboard Lengkap</a>
+      </div>
+      <div style="margin-top: 1.5rem; text-align: center;">
+        <p style="color: #999; margin-bottom: 1rem; font-size: 0.95rem;">Dashboard akan tampil di bawah ini:</p>
+        <div class="dashboard-container">
+          <iframe src="https://datastudio.google.com/reporting/46560b36-afa0-4930-b1ee-262bf5417ad8" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    
     <div style="text-align: center;">
       <a href="tugas kelompok.html" class="back-button">Kembali ke Menu Utama</a>
     </div>
